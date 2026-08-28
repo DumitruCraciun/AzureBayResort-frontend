@@ -37,8 +37,7 @@ function App() {
               <Route path="/rooms" element={<Rooms />} />
               <Route path="/rooms/:id" element={<RoomDetails />} />
               <Route path="/guest-checkout" element={<GuestCheckout />} />              
-              <Route path="/bookingconfirmation/:id" element={<BookingConfirmation />} />
-              <Route path="/booking-confirmation/:id" element={<BookingConfirmation />} /> {/* backup */}
+              <Route path="/bookingconfirmation/:id" element={<BookingConfirmation />} />              
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/booking/:id" element={
@@ -60,9 +59,9 @@ function App() {
                 <AdminRoute>
                   <Admin />
                 </AdminRoute>
-              } />
-            </Routes> 
-            <Route path="*" element={<Navigate to="/" replace />} />           
+              } />              
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>           
           </main>
           <Footer />
         </div>

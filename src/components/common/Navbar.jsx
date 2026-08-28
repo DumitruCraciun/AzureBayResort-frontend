@@ -61,15 +61,15 @@ const Navbar = () => {
 
             {isAuthenticated ? (
               <div className="nav-auth">
-                <Link to="/profile" className="btn-register">
+                <span className="user-name">
                   {user?.full_name?.split(' ')[0] || 'User'}
-                </Link>
+                </span>
                 {user?.role === 'admin' && (
                   <Link to="/admin" className="btn-register" style={{ color: '#d97706' }}>
                     Admin
                   </Link>
                 )}
-                <button onClick={handleLogout} className="btn-register" >
+                <button onClick={handleLogout} className="btn-register">
                   Logout
                 </button>
               </div>
@@ -117,13 +117,9 @@ const Navbar = () => {
             
             {isAuthenticated ? (
               <>
-                <Link
-                  to="/profile"
-                  className="mobile-link register-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
+                <span className="mobile-user-name">
                   👤 {user?.full_name}
-                </Link>
+                </span>
                 {user?.role === 'admin' && (
                   <Link
                     to="/admin"

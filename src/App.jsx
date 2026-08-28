@@ -61,7 +61,8 @@ function App() {
                   <Admin />
                 </AdminRoute>
               } />
-            </Routes>            
+            </Routes> 
+            <Route path="*" element={<Navigate to="/" replace />} />           
           </main>
           <Footer />
         </div>

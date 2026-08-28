@@ -36,9 +36,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/rooms" element={<Rooms />} />
               <Route path="/rooms/:id" element={<RoomDetails />} />
-              <Route path="/guest-checkout" element={<GuestCheckout />} />
-              <Route path="/booking-confirmation/:id" element={<BookingConfirmation />} />
-              <Route path="/booking-confirmation/:id" element={<BookingConfirmation />} />
+              <Route path="/guest-checkout" element={<GuestCheckout />} />              
+              <Route path="/bookingconfirmation/:id" element={<BookingConfirmation />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/booking/:id" element={

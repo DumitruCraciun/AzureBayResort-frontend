@@ -62,8 +62,17 @@ const Booking = () => {
       const paymentRes = await paymentService.createIntent(booking.id);
       console.log('✅ Checkout Session created:', paymentRes.data);
       
-      // 2. 🔥 Redirect direct către Stripe Checkout
-      window.location.href = paymentRes.data.url;
+      // 2. 🔥 Deschide Stripe într-un tab nou
+      const stripeUrl = paymentRes.data.url;
+      window.open(stripeUrl, '_blank');
+      
+      // 3. Resetează starea de procesare după 2 secunde
+      setTimeout(() => {
+        setProcessing(false);
+      }, 2000);
+      
+      // 4. Opțional: mesaj pentru utilizator
+      setError(null);
       
     } catch (err) {
       console.error('❌ Payment error:', err);
@@ -198,9 +207,92 @@ const Booking = () => {
               Payment
             </h2>
             
-            <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '16px' }}>
-              Secure payment powered by Stripe
-            </p>
+{/* Test Cards Info */}
+<div style={{
+  background: '#f8fafc',
+  borderRadius: '12px',
+  padding: '16px',
+  marginBottom: '8px',
+  border: '1px solid #e2e8f0'
+}}>
+  <div style={{
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    marginBottom: '12px',
+    fontSize: '13px',
+    fontWeight: '600',
+    color: '#475569'
+  }}>
+    <span>💳</span> Test Cards (No real charges)
+  </div>
+  
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    {/* Success Card */}
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '8px 12px',
+      background: 'white',
+      borderRadius: '8px',
+      border: '1px solid #d1fae5'
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <span style={{ color: '#16a34a' }}>✅</span>
+        <span style={{ fontSize: '13px', fontWeight: '500' }}>4242 4242 4242 4242</span>
+      </div>
+      <span style={{ fontSize: '11px', color: '#6b7280' }}>Exp: 12/34 • CVC: 123</span>
+    </div>
+    
+    {/* Decline Card */}
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '8px 12px',
+      background: 'white',
+      borderRadius: '8px',
+      border: '1px solid #fee2e2'
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <span style={{ color: '#dc2626' }}>❌</span>
+        <span style={{ fontSize: '13px', fontWeight: '500' }}>4000 0000 0000 0002</span>
+      </div>
+      <span style={{ fontSize: '11px', color: '#6b7280' }}>Exp: 12/34 • CVC: 123</span>
+    </div>
+    
+    {/* 3D Secure Card */}
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '8px 12px',
+      background: 'white',
+      borderRadius: '8px',
+      border: '1px solid #dbeafe'
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <span style={{ color: '#2563eb' }}>🔐</span>
+        <span style={{ fontSize: '13px', fontWeight: '500' }}>4000 0000 0000 3220</span>
+      </div>
+      <span style={{ fontSize: '11px', color: '#6b7280' }}>Exp: 12/34 • CVC: 123</span>
+    </div>
+  </div>
+  
+  <div style={{
+    marginTop: '12px',
+    fontSize: '12px',
+    color: '#6b7280',
+    textAlign: 'center',
+    borderTop: '1px solid #e2e8f0',
+    paddingTop: '12px'
+  }}>
+    ℹ️ No real charges will be made. Use these test cards in the Stripe payment window.
+  </div>
+</div>
+
+
 
             <button
               onClick={handlePayment}

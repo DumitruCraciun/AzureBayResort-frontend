@@ -4,10 +4,17 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Asigură-te că base este setat corect
+  base: '/', // base este setat corect
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
+  // Folderul public este inclus
+  publicDir: 'public',
   server: {
     historyApiFallback: true, // Pentru dezvoltare locală
   },

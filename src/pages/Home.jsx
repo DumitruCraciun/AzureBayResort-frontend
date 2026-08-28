@@ -152,14 +152,7 @@ const Home = () => {
                 <Link to="/rooms" className="hero-btn hero-btn-primary">
                   <span className="shimmer"></span>
                   Explore Rooms
-                </Link>
-
-                {!isAuthenticated && (
-                  <Link to="/booking" className="hero-btn hero-btn-secondary">
-                    <span className="shimmer"></span>
-                    Book Now
-                  </Link>
-                )}
+                </Link>               
               </div>
 
               {/* Quick Stats */}
